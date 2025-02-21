@@ -1,0 +1,60 @@
+.comic_image {
+    position: relative;
+    height: 200vh;
+}
+
+.comic_moving_image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Background image at the back */
+.Background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;  /* Set this image at the back */
+}
+
+/* Table image at the front */
+.Table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;  /* Set this image at the front */
+}
+
+/* Ghost image in the middle */
+.ghost {
+    position: absolute;
+    top: -53vh;
+    left: 0;
+    z-index: 2;  /* Set this image in the middle */
+}
+
+/* Styling for the top rectangle */
+.rectangle_top {
+    position: absolute;
+    top: -53vh;
+    left: 0;
+    right: 0;
+    height: 70vh;  /* Adjust the height as needed */
+    background: black;
+    z-index: 4;  /* Ensure it is above all the images */
+}
+
+/* Styling for the bottom rectangle */
+.rectangle_bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30vh;  /* Adjust the height as needed */
+    background: black;
+    z-index: 4;  /* Ensure it is above all the images */
+}
