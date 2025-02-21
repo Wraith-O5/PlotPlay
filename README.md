@@ -1,3 +1,11 @@
+# This is the project for 888232 2nd Semester 2024
+## Group members:
+1. Kanokkorn Thongkanlaya ID: 662415001
+2. Kanyarat Techapipattanakul ID: 662415004
+3. Tanachot Pukao ID: 662415024
+4. Rungthip Tano ID: 662415049
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
