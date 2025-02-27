@@ -17,7 +17,7 @@ const Scene_13 = () => {
                         whileInView={{                    
                             y: 500
                         }}
-                        transition={{duration: 0.2, delay: 0.4}}
+                        transition={{duration: 0.2, delay: 1}}
                         src={Ghost} className="ghost"
                         
                     />

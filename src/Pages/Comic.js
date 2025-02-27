@@ -14,6 +14,9 @@ import Scene_13 from "../Components/Comic Assets/Animated_Scenes/Scene_13"
 import "../Pages/Testing.css"
 import BackgroundMusic from "../Components/BackgroundMusic";
 import Scene_14 from '../Components/Comic Assets/images/14.png'
+import Scene_15 from '../Components/Comic Assets/images/15.png'
+import Scene_16 from '../Components/Comic Assets/images/16.png'
+import Scene_17 from "../Components/Comic Assets/Animated_Scenes/Scene_17";
 
 export function Comic() {
 
@@ -36,6 +39,9 @@ export function Comic() {
                 <img src={Scene_12}/>
                 <Scene_13/>
                 <img src={Scene_14}/>
+                <img src={Scene_15}/>
+                <img src={Scene_16}/>
+                <Scene_17/>
             </div>
         </section>
     )
