@@ -1,0 +1,45 @@
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 173.3vh;
+  overflow: hidden;
+}
+
+/* Background image at the back */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;  /* Set this image at the back */
+  width: 100%;
+  height: 100%;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the full screen */
+}
+
+/* Overlay for Scene_18_02 and Scene_18_03 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;  /* Set these images above the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Shaking effect for Scene_18_02 and Scene_18_03 */
+.overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+  

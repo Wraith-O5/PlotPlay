@@ -17,6 +17,13 @@ import Scene_14 from '../Components/Comic Assets/images/14.png'
 import Scene_15 from '../Components/Comic Assets/images/15.png'
 import Scene_16 from '../Components/Comic Assets/images/16.png'
 import Scene_17 from "../Components/Comic Assets/Animated_Scenes/Scene_17";
+import Scene_18 from "../Components/Comic Assets/Animated_Scenes/Scene_18";
+import Scene_19 from "../Components/Comic Assets/Animated_Scenes/Scene_19";
+import Scene_20 from "../Components/Comic Assets/Animated_Scenes/Scene_20";
+import Scene_21 from '../Components/Comic Assets/images/21.png'
+import Black_scene from '../Components/Comic Assets/images/กระดาษดำ_21.png'
+import SoundEffects from "../Components/SoundEffects";
+import ClockTicking from '../Components/Comic Assets/Sound/Sound Effects/ClockTicking4.mp3'
 
 export function Comic() {
 
@@ -24,6 +31,7 @@ export function Comic() {
         <section className="Comic">
             <div className="Contents">
                 <BackgroundMusic />
+                
                 <img src={Scene_01}/>
                 <img src={Scene_02}/>
                 <Scene_03 />
@@ -33,7 +41,7 @@ export function Comic() {
                 <img src={Scene_06}/>
                 <img src={Scene_07}/>
                 <img src={Scene_08}/>
-                <img src={Scene_09}/>
+                <SoundEffects src={Scene_09} soundSrc={ClockTicking}/>
                 <Scene_10/>
                 <img src={Scene_11}/>
                 <img src={Scene_12}/>
@@ -42,6 +50,11 @@ export function Comic() {
                 <img src={Scene_15}/>
                 <img src={Scene_16}/>
                 <Scene_17/>
+                <Scene_18/>
+                <Scene_19/>
+                <Scene_20/>
+                <img src={Black_scene}/>
+                <img src={Scene_21}/>
             </div>
         </section>
     )
