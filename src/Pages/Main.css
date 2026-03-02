@@ -1,0 +1,223 @@
+.landing-page {
+    min-height: 100vh;
+    background: url('../assets/hero.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.landing-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, transparent 20%, var(--bg-dark) 90%),
+        rgba(15, 23, 42, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    background: linear-gradient(to bottom, #ffffff 30%, var(--primary-neon));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+    letter-spacing: -2px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.btn-magical {
+    padding: 1rem 3.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.btn-read-magical {
+    background: var(--primary-neon);
+    color: white;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.btn-read-magical:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+.btn-write-magical {
+    background: var(--secondary-neon);
+    color: white;
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+}
+
+.btn-write-magical:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.6);
+}
+
+/* Dashboard Styles */
+.dashboard-page {
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    min-height: calc(100vh - 60px);
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-header-simple {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.btn-toggle-main {
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-toggle-main.active {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.section-group {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+/* Recommended Large Card */
+.recommended-card {
+    background: var(--bg-card);
+    border-radius: 1.5rem;
+    display: flex;
+    overflow: hidden;
+    max-width: 800px;
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s;
+}
+
+.recommended-card:hover {
+    transform: scale(1.02);
+}
+
+.recommended-cover {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.recommended-info {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.recommended-info h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.recommended-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.recommended-description {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Bookmark Mini Card */
+.bookmark-grid {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.bookmark-card {
+    flex: 0 0 350px;
+    background: var(--bg-card);
+    border-radius: 1rem;
+    display: flex;
+    padding: 1rem;
+    gap: 1.5rem;
+    align-items: center;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.bookmark-card:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.bookmark-cover {
+    width: 80px;
+    height: 120px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+.bookmark-info {
+    text-align: left;
+}
+
+.bookmark-info h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+}
+
+.bookmark-info p {
+    font-size: 0.875rem;
+    color: var(--primary-neon);
+    margin: 0;
+}

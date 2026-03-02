@@ -1,6 +1,6 @@
 export const navigationLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Novel', path: '/Novel' },
+    { name: 'Novel', path: '/NovelDetail' },
     { name: 'Comic', path: '/Comic' },
-    { name: 'Testing', path: '/Testing' },
+    { name: 'Dashboard', path: '/Dashboard' },
 ];

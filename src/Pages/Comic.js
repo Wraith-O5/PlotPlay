@@ -1,4 +1,3 @@
-import "../Pages/Testing.css"
 import BackgroundMusic from "../Components/BackgroundMusic";
 import SoundEffects from "../Components/SoundEffects";
 import { comicScenes } from "../configs/comicConfig";

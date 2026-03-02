@@ -1,0 +1,140 @@
+.novel-detail-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 3rem;
+    background: var(--bg-card);
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--glass-border);
+}
+
+.novel-header {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.novel-cover {
+    width: 250px;
+    height: 350px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--primary-neon);
+}
+
+.novel-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.novel-info {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.novel-info h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    font-weight: 900;
+}
+
+.novel-meta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+}
+
+.rating {
+    color: #f59e0b;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.genres {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.genre-tag {
+    background: rgba(168, 85, 247, 0.1);
+    color: var(--primary-neon);
+    padding: 0.4rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.novel-description {
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.btn-read-now {
+    background: linear-gradient(to right, var(--primary-neon), var(--secondary-neon));
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 0.75rem;
+    font-weight: 800;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+}
+
+.btn-read-now:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.5);
+    filter: brightness(1.1);
+}
+
+.chapter-list-section {
+    text-align: left;
+}
+
+.chapter-list-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    color: var(--text-main);
+}
+
+.chapter-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.chapter-item {
+    padding: 1.25rem;
+    background: #0f172a;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chapter-item:hover {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: var(--primary-neon);
+    transform: translateX(8px);
+}
