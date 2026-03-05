@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const LoopingSoundEffects = ({ src, alt, soundSrc, className, motionProps }) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Ghost from "../images/13_02🔴.png"
 import Background from "../images/13_01🔴.png"
 import Table from '../images/13_03🔴.png'
