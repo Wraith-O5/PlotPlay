@@ -1,12 +1,12 @@
 import { Navbar } from "./Components/Navbar";
 import { Outlet } from "react-router-dom";
 
-export function Layout() {
+export function Layout({ isLoggedIn, handleLogout }) {
     return (
         <>
-            <Navbar/>
+            <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
         </>
     )

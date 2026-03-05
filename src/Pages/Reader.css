@@ -47,7 +47,6 @@
     left: 50%;
     transform: translateX(-50%);
     background: var(--glass);
-    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     padding: 1rem 2rem;
     border-radius: 2rem;
@@ -154,13 +153,22 @@
 }
 
 .nav-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.6rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
     border-radius: 0.5rem;
-    background: var(--primary-neon);
-    color: white;
-    border: none;
     cursor: pointer;
     font-weight: 700;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--primary-neon);
+    border-color: var(--primary-neon);
 }
 
 .nav-btn:disabled {

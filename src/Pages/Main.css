@@ -18,8 +18,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle, transparent 20%, var(--bg-dark) 90%),
-        rgba(15, 23, 42, 0.4);
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 95%);
     z-index: 1;
 }
 
@@ -34,11 +33,10 @@
     font-size: 5rem;
     font-weight: 900;
     margin-bottom: 2rem;
-    background: linear-gradient(to bottom, #ffffff 30%, var(--primary-neon));
+    background: linear-gradient(135deg, #ffffff 10%, var(--secondary-neon) 50%, var(--primary-neon) 90%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
     letter-spacing: -2px;
 }
 
@@ -63,23 +61,21 @@
 .btn-read-magical {
     background: var(--primary-neon);
     color: white;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
 }
 
 .btn-read-magical:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+    filter: brightness(1.1);
 }
 
 .btn-write-magical {
     background: var(--secondary-neon);
     color: white;
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
 }
 
 .btn-write-magical:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.6);
+    filter: brightness(1.1);
 }
 
 /* Dashboard Styles */
@@ -102,18 +98,29 @@
 }
 
 .btn-toggle-main {
-    padding: 0.5rem 2rem;
-    border-radius: 0.5rem;
-    background: var(--bg-card);
-    color: var(--text-main);
+    padding: 0.6rem 2.5rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
     border: 1px solid var(--glass-border);
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.btn-toggle-main:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-toggle-main.active {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--primary-neon);
+    border-color: var(--primary-neon);
+    color: white;
 }
 
 .section-group {
@@ -197,7 +204,8 @@
 }
 
 .bookmark-card:hover {
-    background: rgba(168, 85, 247, 0.1);
+    background: rgba(6, 182, 212, 0.1);
+    border-color: var(--secondary-neon);
 }
 
 .bookmark-cover {

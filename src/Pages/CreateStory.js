@@ -8,7 +8,8 @@ export function CreateStory() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/MyWorks');
+        // In a real app, we'd save the story first and get an ID
+        navigate('/Writer/new/0');
     };
 
     return (

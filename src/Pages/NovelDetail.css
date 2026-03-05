@@ -68,13 +68,13 @@
 }
 
 .genre-tag {
-    background: rgba(168, 85, 247, 0.1);
+    background: rgba(124, 58, 237, 0.1);
     color: var(--primary-neon);
     padding: 0.4rem 1rem;
     border-radius: 0.75rem;
     font-size: 0.875rem;
     font-weight: 600;
-    border: 1px solid rgba(168, 85, 247, 0.2);
+    border: 1px solid rgba(124, 58, 237, 0.2);
 }
 
 .novel-description {
@@ -93,12 +93,10 @@
     text-decoration: none;
     display: inline-block;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
 }
 
 .btn-read-now:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.5);
     filter: brightness(1.1);
 }
 
@@ -134,7 +132,7 @@
 }
 
 .chapter-item:hover {
-    background: rgba(168, 85, 247, 0.15);
+    background: rgba(124, 58, 237, 0.15);
     border-color: var(--primary-neon);
     transform: translateX(8px);
 }

@@ -14,16 +14,23 @@ import { CreateStory } from './Pages/CreateStory';
 import { StoryManagement } from './Pages/StoryManagement';
 import { Writer } from './Pages/Writer';
 
+import React, { useState } from 'react';
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => setIsLoggedIn(true);
+  const handleLogout = () => setIsLoggedIn(false);
+
   return (
     <Router>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+        <Route element={<Layout isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}>
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="Novel" element={<Novel />} />
           <Route path="Comic" element={<Comic />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="SignUp" element={<SignUp />} />
+          <Route path="Login" element={<Login onLogin={handleLogin} />} />
+          <Route path="SignUp" element={<SignUp onLogin={handleLogin} />} />
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="NovelDetail" element={<NovelDetail />} />
           <Route path="Reader/:chapterId" element={<Reader />} />

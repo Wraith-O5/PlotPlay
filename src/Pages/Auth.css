@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 60px);
-    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    background: var(--bg-dark);
     padding: 2rem;
 }
 
@@ -59,7 +59,26 @@
 .form-group input:focus {
     outline: none;
     border-color: var(--primary-neon);
-    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2);
+    border-color: var(--primary-neon);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
 }
 
 .auth-button {

@@ -17,7 +17,7 @@ export function MyWorks() {
 
             <div className="works-grid">
                 {works.map(work => (
-                    <Link key={work.id} to={`/StoryManagement/${work.id}`} className="work-card">
+                    <Link key={work.id} to={`/Writer/${work.id}/0`} className="work-card">
                         <div className="work-card-img">
                             <img src={work.cover} alt={work.title} />
                         </div>

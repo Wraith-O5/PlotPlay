@@ -3,14 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 import logo from '../assets/logo.png';
 
-export function Login() {
+export function Login({ onLogin }) {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Placeholder login logic
-        console.log('Login submitted');
-        navigate('/Dashboard');
+        onLogin();
+        navigate('/');
     };
 
     return (
