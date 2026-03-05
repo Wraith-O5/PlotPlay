@@ -44,7 +44,6 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-react": "^7.28.5",
     "babel-loader": "^10.0.0",
-    "raw-loader": "^4.0.2",
-    "vercel": "^50.25.4"
+    "raw-loader": "^4.0.2"
   }
 }
