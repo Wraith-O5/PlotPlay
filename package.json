@@ -20,6 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "db:test": "node scripts/test-connection.js",
+    "db:setup": "node scripts/setup-db.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
