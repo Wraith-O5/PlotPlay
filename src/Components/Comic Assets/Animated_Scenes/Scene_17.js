@@ -27,13 +27,14 @@ const Scene_17 = () => {
       }
     );
 
-    if (imageRef.current) {
-      observer.observe(imageRef.current); // Start observing the image container
+    const currentImageRef = imageRef.current;
+    if (currentImageRef) {
+      observer.observe(currentImageRef); // Start observing the image container
     }
 
     return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current); // Clean up observer
+      if (currentImageRef) {
+        observer.unobserve(currentImageRef); // Clean up observer
       }
     };
   }, []);
@@ -65,17 +66,17 @@ const Scene_17 = () => {
           }}
         >
           <img
-            src={currentImage === 0 ? Scene_17_01 : currentImage === 1 ? Black_Screen : currentImage === 2 
-                ? Scene_17_01 : currentImage === 3 ? Black_Screen : currentImage === 4 
+            src={currentImage === 0 ? Scene_17_01 : currentImage === 1 ? Black_Screen : currentImage === 2
+              ? Scene_17_01 : currentImage === 3 ? Black_Screen : currentImage === 4
                 ? Scene_17_02 : currentImage === 5 ? Black_Screen : currentImage === 6
-                ? Scene_17_02 : currentImage === 7 ? Black_Screen : currentImage === 8
-                ? Scene_17_01 : currentImage === 9 ? Black_Screen : currentImage === 10
-                ? Scene_17_02 : currentImage === 11 ? Black_Screen : currentImage === 12
-                ? Scene_17_03 : currentImage === 13 ? Black_Screen : currentImage === 14
-                ? Scene_17_01 : currentImage === 15 ? Black_Screen : currentImage === 16
-                ? Scene_17_03 : currentImage === 17 ? Black_Screen : currentImage === 18
-                ? Scene_17_04 : Black_Screen }
-            alt={`Image ${currentImage + 1}`}
+                  ? Scene_17_02 : currentImage === 7 ? Black_Screen : currentImage === 8
+                    ? Scene_17_01 : currentImage === 9 ? Black_Screen : currentImage === 10
+                      ? Scene_17_02 : currentImage === 11 ? Black_Screen : currentImage === 12
+                        ? Scene_17_03 : currentImage === 13 ? Black_Screen : currentImage === 14
+                          ? Scene_17_01 : currentImage === 15 ? Black_Screen : currentImage === 16
+                            ? Scene_17_03 : currentImage === 17 ? Black_Screen : currentImage === 18
+                              ? Scene_17_04 : Black_Screen}
+            alt={`${currentImage + 1}`}
           />
         </motion.div>
       )}

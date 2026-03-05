@@ -20,23 +20,23 @@ const Scene_04 = () => {
 
   return (
     <div className="image-slider">
-        <img src={Scene_04_01}/>
-        <motion.div
-            key={currentImage}
-            className="slider-image"
-            initial={{ opacity: 1 }} // Initial state: hidden
-            animate={{ opacity: 1 }} // Animate to fully visible
-            exit={{ opacity: 1 }} // Animate out of view
-            transition={{ 
-                duration: 0.1,
-                ease: 'easeInOut'
-               }}
-        >
-            <img
-            src={currentImage === 0 ? Scene_04_02 : currentImage === 1 ? Scene_04_03 : Scene_04_04}
-            alt={`Image ${currentImage + 1}`}
-            />
-        </motion.div>
+      <img src={Scene_04_01} alt="" />
+      <motion.div
+        key={currentImage}
+        className="slider-image"
+        initial={{ opacity: 1 }} // Initial state: hidden
+        animate={{ opacity: 1 }} // Animate to fully visible
+        exit={{ opacity: 1 }} // Animate out of view
+        transition={{
+          duration: 0.1,
+          ease: 'easeInOut'
+        }}
+      >
+        <img
+          src={currentImage === 0 ? Scene_04_02 : currentImage === 1 ? Scene_04_03 : Scene_04_04}
+          alt={`${currentImage + 1}`}
+        />
+      </motion.div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import "./Scene_20.css";
 import Scene_20_01 from "../images/20_01.png";
 import Scene_20_02 from "../images/20_02.png";
@@ -48,11 +47,11 @@ const Scene_20 = () => {
     }
 
     return () => clearInterval(interval);
-  }, [isVisible]);
+  }, [isVisible, sceneIndex]);
 
   return (
     <div className="Comic" ref={containerRef}>
-      <img src={sceneIndex === 0 ? Black_scene : Scene_20_01} className="Background" />
+      <img src={sceneIndex === 0 ? Black_scene : Scene_20_01} alt="" className="Background" />
 
       {showGhost && (
         <div className="ComicImage">
