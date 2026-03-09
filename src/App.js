@@ -33,6 +33,7 @@ function App() {
           <Route path="SignUp" element={<SignUp onLogin={handleLogin} />} />
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="NovelDetail" element={<NovelDetail />} />
+          <Route path="NovelDetail/:novelId" element={<NovelDetail />} />
           <Route path="Reader/:chapterId" element={<Reader />} />
           <Route path="MyWorks" element={<MyWorks />} />
           <Route path="CreateStory" element={<CreateStory />} />
