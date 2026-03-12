@@ -47,6 +47,19 @@ async function setupDatabase() {
         console.log('--- Database Setup Started ---');
         console.log('Target DATABASE_URL:', process.env.DATABASE_URL.replace(/:([^:@]+)@/, ':****@'));
 
+        // 0. Drop all existing tables to force schema rebuild
+        console.log('\n--- Step 0: Dropping Existing Tables ---');
+        try {
+            await sql`
+                DROP TABLE IF EXISTS 
+                assets, saved_works, storyboards, income_history, transaction_history, 
+                reading_history, reviews, chapters, novels, genres, writers, readers, users CASCADE
+            `;
+            console.log('✅ Existing tables dropped.');
+        } catch (e) {
+            console.error('Error dropping tables:', e.message);
+        }
+
         // 1. Execute Schema
         console.log('\n--- Step 1: Creating Schema ---');
         await runSqlFile(path.join(__dirname, '../database/schema.sql'));

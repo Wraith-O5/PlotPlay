@@ -3,67 +3,111 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { marked } from "marked";
 import TypingEffect from '../Components/TypingEffects';
-import { novelChapters } from '../configs/novelConfig';
 import './Reader.css';
 
 export function Reader() {
     const { chapterId } = useParams();
     const navigate = useNavigate();
-    const index = parseInt(chapterId) || 0;
+
+    const [chapter, setChapter] = useState(null);
     const [sectionsContent, setSectionsContent] = useState([]);
+    const [allChapters, setAllChapters] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
     const [settings, setSettings] = useState({
         fontSize: 20,
         theme: 'dark' // white, sepia, dark
     });
 
-    const chapter = novelChapters[index];
-
     useEffect(() => {
-        const fetchAllSections = async () => {
-            if (!chapter) return;
+        const fetchChapterAndNovel = async () => {
+            setLoading(true);
             try {
-                const sections = chapter.sections || [{ path: chapter.path, type: chapter.type }];
-                const loadedSections = await Promise.all(sections.map(async (sec) => {
-                    const response = await fetch(sec.path);
-                    const text = await response.text();
-                    return { content: cleanMarkdownContent(text), type: sec.type };
-                }));
-                setSectionsContent(loadedSections);
+                // 1. Fetch current chapter
+                const chapRes = await fetch(`/api/chapters/${chapterId}`);
+                const chapData = await chapRes.json();
+
+                if (!chapRes.ok) {
+                    setError(chapData.error || 'Chapter not found');
+                    setLoading(false);
+                    return;
+                }
+
+                setChapter(chapData.chapter);
+                setSectionsContent(parseContent(chapData.chapter.content));
+
+                // 2. Fetch all chapters for Next/Prev buttons
+                const novelRes = await fetch(`/api/novels/${chapData.chapter.novel_id}`);
+                const novelData = await novelRes.json();
+                if (novelRes.ok) {
+                    setAllChapters(novelData.chapters);
+                }
+
                 window.scrollTo(0, 0);
             } catch (error) {
-                console.error('Error fetching chapter sections:', error);
+                console.error('Error fetching chapter:', error);
+                setError('Network error');
+            } finally {
+                setLoading(false);
             }
         };
-        fetchAllSections();
-    }, [chapter]);
 
-    const cleanMarkdownContent = (content) => {
-        let cleanContent = content.replace(/undefined/g, '');
-        cleanContent = cleanContent.replace(/<>\s*/g, '');
-        return cleanContent;
+        fetchChapterAndNovel();
+    }, [chapterId]);
+
+    const parseContent = (text) => {
+        if (!text) return [];
+        const parts = [];
+
+        const cleanText = text.replace(/undefined/g, '').replace(/<>\s*/g, '');
+        const sections = cleanText.split('===TYPING_START===');
+
+        if (sections[0]) {
+            parts.push({ type: 'markdown', content: sections[0] });
+        }
+
+        for (let i = 1; i < sections.length; i++) {
+            const subParts = sections[i].split('===TYPING_END===');
+
+            if (subParts[0]) {
+                parts.push({ type: 'typing', content: subParts[0] });
+            }
+            if (subParts[1] && subParts[1].trim() !== '') {
+                parts.push({ type: 'markdown', content: subParts[1] });
+            }
+        }
+        return parts;
     };
 
-    if (!chapter) return <div className="reader-container bg-dark">Chapter not found</div>;
+    if (loading) return <div className="reader-container bg-dark"><p style={{ padding: '4rem', textAlign: 'center' }}>Loading chapter...</p></div>;
+    if (error || !chapter) return <div className="reader-container bg-dark"><p style={{ padding: '4rem', textAlign: 'center', color: '#ff6b6b' }}>{error}</p></div>;
+
+    // Find Next/Prev logic
+    const currentIndex = allChapters.findIndex(c => c.chapter_id === chapter.chapter_id);
+    const prevChapter = currentIndex > 0 ? allChapters[currentIndex - 1] : null;
+    const nextChapter = currentIndex < allChapters.length - 1 && currentIndex !== -1 ? allChapters[currentIndex + 1] : null;
 
     return (
         <div className={`reader-container bg-${settings.theme}`} style={{ fontSize: `${settings.fontSize}px` }}>
             <header className="reader-header">
-                <Link to="/NovelDetail" className="back-link">
+                <Link to={`/NovelDetail/${chapter.novel_id}`} className="back-link">
                     <span>←</span> Back to Novel
                 </Link>
                 <h2>{chapter.title}</h2>
                 <div className="chapter-nav">
                     <button
                         className="nav-btn"
-                        disabled={index === 0}
-                        onClick={() => navigate(`/Reader/${index - 1}`)}
+                        disabled={!prevChapter}
+                        onClick={() => navigate(`/Reader/${prevChapter.chapter_id}`)}
                     >
                         Prev
                     </button>
                     <button
                         className="nav-btn"
-                        disabled={index === novelChapters.length - 1}
-                        onClick={() => navigate(`/Reader/${index + 1}`)}
+                        disabled={!nextChapter}
+                        onClick={() => navigate(`/Reader/${nextChapter.chapter_id}`)}
                     >
                         Next
                     </button>

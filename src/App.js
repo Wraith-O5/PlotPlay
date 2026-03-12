@@ -14,6 +14,8 @@ import { CreateStory } from './Pages/CreateStory';
 import { StoryManagement } from './Pages/StoryManagement';
 import { Writer } from './Pages/Writer';
 
+import { WriterDashboard } from './Pages/WriterDashboard';
+
 import React, { useState } from 'react';
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
           <Route path="NovelDetail/:novelId" element={<NovelDetail />} />
           <Route path="Reader/:chapterId" element={<Reader />} />
           <Route path="MyWorks" element={<MyWorks />} />
+          <Route path="WriterDashboard" element={<WriterDashboard />} />
           <Route path="CreateStory" element={<CreateStory />} />
           <Route path="StoryManagement/:storyId" element={<StoryManagement />} />
           <Route path="Writer/:storyId/:chapterId" element={<Writer />} />

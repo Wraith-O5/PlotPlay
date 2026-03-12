@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './Main.css';
 import fractureCover from '../assets/fracture.png';
 
+// Import manually to ensure they resolve, then we'll map them
+import godDimensions from '../assets/god_dimensions.png';
+import blossomRain from '../assets/Blossom Rain.png';
+
 export function Dashboard() {
     const [novels, setNovels] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -28,18 +32,30 @@ export function Dashboard() {
         fetchNovels();
     }, []);
 
-    // Use the first novel as "recommended", rest as "bookmarks"
+    // We'll keep the dynamic recommended from DB, but inject user-requested mock bookmarks for now
     const recommended = novels.length > 0 ? novels[0] : null;
-    const bookmarks = novels.length > 1 ? novels.slice(1) : [];
+
+    // Hardcoded requested structure for Bookmarks to emulate Figma Mockup
+    const mockBookmarks = [
+        {
+            id: 'mock-1',
+            name: 'The Sword God of Dimensions',
+            image: godDimensions,
+            readChapters: 150,
+            totalChapters: 600,
+        },
+        {
+            id: 'mock-2',
+            name: 'Blossom Rain',
+            image: blossomRain,
+            readChapters: 210,
+            totalChapters: 280,
+        }
+    ];
 
     return (
         <div className="dashboard-page">
             <div className="dashboard-container">
-                <div className="dashboard-header-simple">
-                    <button className="btn-toggle-main active">Read</button>
-                    <button className="btn-toggle-main">Write</button>
-                </div>
-
                 {loading && (
                     <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '2rem' }}>
                         Loading novels...
@@ -51,7 +67,7 @@ export function Dashboard() {
 
                 {!loading && !error && recommended && (
                     <div className="section-group">
-                        <h2 className="section-title">Recommended for You</h2>
+                        <h2 className="section-title" style={{ fontSize: '1.8rem', marginBottom: '1.5rem', marginTop: '1rem' }}>Recommended for You</h2>
                         <Link
                             to={`/NovelDetail/${recommended.novel_id}`}
                             className="recommended-card"
@@ -63,46 +79,54 @@ export function Dashboard() {
                                 className="recommended-cover"
                             />
                             <div className="recommended-info">
-                                <h3>{recommended.name}</h3>
-                                <div className="recommended-meta">
-                                    {recommended.genre} • Author: {recommended.author} • Rating: {recommended.review_score}/5
+                                <h3 style={{ fontSize: '1.4rem' }}>{recommended.name.toUpperCase()}</h3>
+                                <div className="recommended-meta" style={{ marginTop: '0.5rem', color: 'var(--text-muted)', fontWeight: 'bold' }}>
+                                    Genre: {recommended.genre}
                                 </div>
-                                <p className="recommended-description">{recommended.description}</p>
+                                <p className="recommended-description" style={{ marginTop: '1rem', lineHeight: '1.5' }}>
+                                    <strong>Description:</strong> {recommended.description}
+                                </p>
+                                <div className="recommended-meta" style={{ marginTop: '1rem', fontWeight: 'bold' }}>
+                                    Rating: {recommended.review_score}/5
+                                </div>
                             </div>
                         </Link>
                     </div>
                 )}
 
-                {!loading && !error && bookmarks.length > 0 && (
-                    <div className="section-group">
-                        <h2 className="section-title">More Novels</h2>
-                        <div className="bookmark-grid">
-                            {bookmarks.map(novel => (
+                {!loading && !error && (
+                    <div className="section-group" style={{ marginTop: '3rem' }}>
+                        <h2 className="section-title" style={{ fontSize: '1.8rem', marginBottom: '1.5rem' }}>Bookmark</h2>
+
+                        {/* Wrapper for the grey dark rounded container like in mockup */}
+                        <div style={{ background: 'var(--bg-card)', borderRadius: '12px', padding: '2rem', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                            {mockBookmarks.map(bookmark => (
                                 <Link
-                                    key={novel.novel_id}
-                                    to={`/NovelDetail/${novel.novel_id}`}
-                                    className="bookmark-card"
-                                    style={{ textDecoration: 'none', color: 'inherit' }}
+                                    key={bookmark.id}
+                                    to={`/NovelDetail/1`} // Routing statically for mock
+                                    className="bookmark-card-modern"
                                 >
-                                    <img
-                                        src={novel.cover_image_url || fractureCover}
-                                        alt={novel.name}
-                                        className="bookmark-cover"
-                                    />
-                                    <div className="bookmark-info">
-                                        <h4>{novel.name}</h4>
-                                        <p>{novel.author}</p>
+                                    <div className="bookmark-cover-modern">
+                                        <img src={bookmark.image} alt={bookmark.name} />
+                                    </div>
+                                    <div className="bookmark-content-modern">
+                                        <h4>{bookmark.name}</h4>
+                                        <div className="progress-container">
+                                            <div className="progress-bar-bg">
+                                                <div
+                                                    className="progress-bar-fill"
+                                                    style={{ width: `${(bookmark.readChapters / bookmark.totalChapters) * 100}%` }}
+                                                ></div>
+                                            </div>
+                                            <p className="progress-text">
+                                                Read {bookmark.readChapters}/{bookmark.totalChapters} Chapters
+                                            </p>
+                                        </div>
                                     </div>
                                 </Link>
                             ))}
                         </div>
                     </div>
-                )}
-
-                {!loading && !error && novels.length === 0 && (
-                    <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '2rem' }}>
-                        No novels found in the database yet.
-                    </p>
                 )}
             </div>
         </div>

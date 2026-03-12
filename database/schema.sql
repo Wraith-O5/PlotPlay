@@ -1,20 +1,22 @@
 -- Database Schema for Novel & Comic Web
 
 -- 1. User Tables
-CREATE TABLE IF NOT EXISTS readers (
-    reader_id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS users (
+    user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS readers (
+    reader_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS writers (
     writer_id SERIAL PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 -- 2. Content Tables
@@ -84,7 +86,7 @@ CREATE TABLE IF NOT EXISTS income_history (
 CREATE TABLE IF NOT EXISTS storyboards (
     storyboard_id SERIAL PRIMARY KEY,
     writer_id INTEGER REFERENCES writers(writer_id) ON DELETE CASCADE,
-    novel_name VARCHAR(255) NOT NULL,
+    novel_id INTEGER REFERENCES novels(novel_id) ON DELETE CASCADE,
     work_status VARCHAR(50) DEFAULT 'Draft', -- Draft, In Progress, Published
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
