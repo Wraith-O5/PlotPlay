@@ -15,10 +15,11 @@ export default async function handler(request, response) {
                 n.cover_image_url,
                 n.created_at,
                 g.name AS genre,
-                w.username AS author
+                u.username AS author
             FROM novels n
             LEFT JOIN genres g ON n.genre_id = g.genre_id
             LEFT JOIN writers w ON n.writer_id = w.writer_id
+            LEFT JOIN users u ON w.user_id = u.user_id
             ORDER BY n.created_at DESC
         `;
 

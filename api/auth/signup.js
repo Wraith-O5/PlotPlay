@@ -16,24 +16,33 @@ export default async function handler(request, response) {
         // Hash the password
         const password_hash = await bcrypt.hash(password, 10);
 
-        // Insert into readers table
-        const readerResult = await sql`
-            INSERT INTO readers (username, email, password_hash)
+        // Insert into central users table
+        const userResult = await sql`
+            INSERT INTO users (username, email, password_hash)
             VALUES (${username}, ${email}, ${password_hash})
-            RETURNING reader_id, username, email, created_at
+            RETURNING user_id, username, email, created_at
+        `;
+        const newUser = userResult[0];
+
+        // Give them a reader profile
+        const readerResult = await sql`
+            INSERT INTO readers (user_id)
+            VALUES (${newUser.user_id})
+            RETURNING reader_id
         `;
 
-        // Insert into writers table
+        // Give them a writer profile
         const writerResult = await sql`
-            INSERT INTO writers (username, email, password_hash)
-            VALUES (${username}, ${email}, ${password_hash})
-            RETURNING writer_id, username, email, created_at
+            INSERT INTO writers (user_id)
+            VALUES (${newUser.user_id})
+            RETURNING writer_id
         `;
 
         return response.status(201).json({
             message: 'Account created successfully!',
-            reader: readerResult[0],
-            writer: writerResult[0],
+            user: newUser,
+            reader: { reader_id: readerResult[0].reader_id, ...newUser },
+            writer: { writer_id: writerResult[0].writer_id, ...newUser },
         });
 
     } catch (error) {

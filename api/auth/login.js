@@ -13,23 +13,15 @@ export default async function handler(request, response) {
     }
 
     try {
-        // Look up user in readers table (by email or username)
-        let users = await sql`
-            SELECT reader_id as id, username, email, password_hash, 'reader' as role
-            FROM readers
-            WHERE email = ${email} OR username = ${email}
+        const users = await sql`
+            SELECT u.user_id as id, u.username, u.email, u.password_hash,
+                   r.reader_id, w.writer_id
+            FROM users u
+            LEFT JOIN readers r ON u.user_id = r.user_id
+            LEFT JOIN writers w ON u.user_id = w.user_id
+            WHERE u.email = ${email} OR u.username = ${email}
             LIMIT 1
         `;
-
-        // If not found as a reader, check writers table
-        if (users.length === 0) {
-            users = await sql`
-                SELECT writer_id as id, username, email, password_hash, 'writer' as role
-                FROM writers
-                WHERE email = ${email} OR username = ${email}
-                LIMIT 1
-            `;
-        }
 
         if (users.length === 0) {
             return response.status(401).json({ error: 'Invalid email/username or password.' });
@@ -43,14 +35,15 @@ export default async function handler(request, response) {
             return response.status(401).json({ error: 'Invalid email/username or password.' });
         }
 
-        // Return user info (excluding password_hash)
+        // Return user info
         return response.status(200).json({
             message: 'Login successful!',
             user: {
-                id: user.id,
+                id: user.reader_id,
+                writerId: user.writer_id,
                 username: user.username,
                 email: user.email,
-                role: user.role,
+                role: 'reader', 
             }
         });
 
