@@ -13,6 +13,9 @@ export function Navbar({ isLoggedIn, onLogout }) {
         location.pathname.startsWith('/CreateStory') ||
         location.pathname.startsWith('/StoryManagement');
 
+    // Pages where the main Read/Write toggles shouldn't appear
+    const isHiddenTogglePage = location.pathname === '/' || location.pathname === '/Login' || location.pathname === '/SignUp';
+
     return (
         <nav className="navbar">
             <div className="nav-container">
@@ -22,7 +25,7 @@ export function Navbar({ isLoggedIn, onLogout }) {
                         Vivid Tale
                     </Link>
 
-                    {isLoggedIn && (
+                    {isLoggedIn && !isHiddenTogglePage && (
                         isWriterPath ? (
                             <Link to="/Dashboard" className="btn-nav-toggle btn-nav-read">Read</Link>
                         ) : (

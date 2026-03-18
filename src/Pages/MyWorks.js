@@ -24,11 +24,28 @@ export function MyWorks() {
             try {
                 const res = await fetch(`/api/writers/${writerId}/novels`);
                 const data = await res.json();
+                let fetchedWorks = [];
                 if (res.ok) {
-                    setWorks(data.novels);
+                    fetchedWorks = data.novels;
                 } else {
                     setError(data.error || 'Failed to load your works.');
                 }
+
+                // ECHO USER MOCK LOGIC (No DB modification)
+                if (user.username === 'Echo') {
+                    const echoRes = await fetch(`/api/writers/1/novels`);
+                    const echoData = await echoRes.json();
+                    if (echoRes.ok && echoData.novels) {
+                        const fractureMock = echoData.novels.find(n => n.name === 'The Neon Void' || n.name === 'FRACTURE');
+                        if (fractureMock && !fetchedWorks.find(w => w.novel_id === fractureMock.novel_id)) {
+                            // Ensure the name is displayed as FRACTURE as requested
+                            fractureMock.name = 'FRACTURE';
+                            fetchedWorks.push(fractureMock);
+                        }
+                    }
+                }
+
+                setWorks(fetchedWorks);
             } catch (err) {
                 setError('Network error while loading your works.');
             } finally {
