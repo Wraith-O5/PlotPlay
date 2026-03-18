@@ -12,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
-const sql = neon(process.env.DATABASE_URL);
+const connectionString = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_3VkietPa6opX@ep-patient-waterfall-a1f40wgv-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require';
+const sql = neon(connectionString);
 
 // --- API ENDPOINTS ---
 
