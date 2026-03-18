@@ -1,7 +1,7 @@
-import { sql } from '../_db.js';
-import bcrypt from 'bcryptjs';
+const { sql } = require('../_db.js');
+const bcrypt = require('bcryptjs');
 
-export default async function handler(request, response) {
+module.exports = async function handler(request, response) {
     if (request.method !== 'POST') {
         return response.status(405).json({ error: 'Method Not Allowed' });
     }

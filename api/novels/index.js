@@ -1,6 +1,6 @@
-import { sql } from '../_db.js';
+const { sql } = require('../_db.js');
 
-export default async function handler(request, response) {
+module.exports = async function handler(request, response) {
     if (request.method !== 'GET') {
         return response.status(405).json({ error: 'Method Not Allowed' });
     }
