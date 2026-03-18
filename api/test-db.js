@@ -1,6 +1,6 @@
-import { sql } from './_db.js';
+const { sql } = require('./_db.js');
 
-export default async function handler(request, response) {
+module.exports = async function handler(request, response) {
     try {
         // Basic connectivity test
         const result = await sql`SELECT NOW() as current_time, version()`;
@@ -16,4 +16,4 @@ export default async function handler(request, response) {
             details: error.message
         });
     }
-}
+};
